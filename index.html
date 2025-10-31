@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Ecology Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="weekSelection" class="card">
+            <div class="header">
+                <div class="icon">🐯🌴📝</div>
+                <h1>Wildlife Ecology Quiz</h1>
+                <p>Select a week to start practicing</p>
+            </div>
+
+            <button class="full-quiz-btn" onclick="startQuiz('all')">
+                <div> Full Quiz</div>
+                <div class="subtitle" id="totalQuestions">Practice all questions</div>
+            </button>
+
+            <div class="week-grid" id="weekGrid"></div>
+        </div>
+
+        
+        <div id="quizScreen" class="hidden">
+            <div class="card">
+                <div class="question-header">
+                    <h2>Wildlife Ecology Quiz</h2>
+                    <div class="score-display">
+                        <div class="label">Score</div>
+                        <div class="score"><span id="score">0</span>/<span id="total">0</span></div>
+                    </div>
+                </div>
+
+                <div class="question-info">
+                    <span id="weekInfo">Week 1</span>
+                    <span id="questionNumber">Question 1 of 10</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="question-text" id="questionText"></div>
+
+                <div class="options" id="optionsContainer"></div>
+
+                <div id="feedback" class="feedback hidden"></div>
+
+                <button class="btn hidden" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+
+        
+        <div id="resultsScreen" class="hidden">
+            <div class="card result-card">
+                <div class="trophy">🏆</div>
+                <h2>Quiz Complete!</h2>
+                <p style="color: #666; margin-top: 10px;">Here's how you performed</p>
+
+                <div class="score-big">
+                    <div class="number"><span id="finalScore">0</span>/<span id="finalTotal">0</span></div>
+                    <div class="percentage" id="percentage">0%</div>
+                </div>
+
+                <div class="review-section">
+                    <h3>Review Your Answers:</h3>
+                    <div id="reviewContainer"></div>
+                </div>
+
+                <button class="btn" onclick="backToWeekSelection()">🏠 Back to Home</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
