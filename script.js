@@ -1,4 +1,3 @@
-
 let allQuestions = [];
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -19,19 +18,29 @@ async function init() {
     } catch (error) {
         console.error('Error loading questions:', error);
         document.querySelector('.container').innerHTML = `
-                    <div class="card" style="text-align: center; padding: 60px 40px;">
-                        <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
-                        <h2 style="color: #ef4444; margin-bottom: 15px;">Failed to Load Questions</h2>
-                    </div>
-                `;
+            <div class="card" style="text-align: center; padding: 60px 40px;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
+                <h2 style="color: #ef4444; margin-bottom: 15px;">Failed to Load Questions</h2>
+            </div>
+        `;
     }
+}
+
+// Shuffle array function for random quiz
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
 }
 
 function displayWeekSelection() {
     const weeks = [...new Set(allQuestions.map(q => q.week))].sort((a, b) => a - b);
     const weekGrid = document.getElementById('weekGrid');
 
-    document.getElementById('totalQuestions').textContent = `Practice all ${allQuestions.length} questions`;
+    document.getElementById('totalQuestions').textContent = `Practice all ${allQuestions.length} questions in order`;
 
     weekGrid.innerHTML = '';
     weeks.forEach(week => {
@@ -40,9 +49,9 @@ function displayWeekSelection() {
         btn.className = 'week-btn';
         btn.onclick = () => startQuiz(week);
         btn.innerHTML = `
-                    <div class="week-number">Week ${week}</div>
-                    <div class="question-count">${weekQuestions.length} questions</div>
-                `;
+            <div class="week-number">Week ${week}</div>
+            <div class="question-count">${weekQuestions.length} questions</div>
+        `;
         weekGrid.appendChild(btn);
     });
 
@@ -53,8 +62,13 @@ function displayWeekSelection() {
 
 function startQuiz(week) {
     if (week === 'all') {
+        // Full quiz - questions in original order
         currentQuestions = [...allQuestions];
+    } else if (week === 'random') {
+        // Random quiz - shuffle all questions
+        currentQuestions = shuffleArray(allQuestions);
     } else {
+        // Specific week quiz
         currentQuestions = allQuestions.filter(q => q.week === week);
     }
 
@@ -92,9 +106,9 @@ function displayQuestion() {
         optionDiv.className = 'option';
         optionDiv.onclick = () => selectAnswer(index);
         optionDiv.innerHTML = `
-                    <div class="option-letter">${String.fromCharCode(65 + index)}</div>
-                    <div>${option}</div>
-                `;
+            <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+            <div>${option}</div>
+        `;
         optionsContainer.appendChild(optionDiv);
     });
 
@@ -134,9 +148,9 @@ function selectAnswer(index) {
         feedback.innerHTML = '<strong>✓ Correct!</strong>';
     } else {
         feedback.innerHTML = `
-                    <strong>✗ Incorrect</strong>
-                    <div>The correct answer is: ${question.options[question.correctAnswer]}</div>
-                `;
+            <strong>✗ Incorrect</strong>
+            <div>The correct answer is: ${question.options[question.correctAnswer]}</div>
+        `;
     }
 
     answeredQuestions.push({
@@ -178,20 +192,20 @@ function showResults() {
         let answerHTML = '';
         if (!item.isCorrect) {
             answerHTML = `
-                        <div class="review-answer wrong">Your answer: ${item.options[item.selectedAnswer]}</div>
-                        <div class="review-answer correct">Correct answer: ${item.options[item.correctAnswer]}</div>
-                    `;
+                <div class="review-answer wrong">Your answer: ${item.options[item.selectedAnswer]}</div>
+                <div class="review-answer correct">Correct answer: ${item.options[item.correctAnswer]}</div>
+            `;
         }
 
         reviewDiv.innerHTML = `
-                    <div class="review-header">
-                        <div class="review-icon">${item.isCorrect ? '✅' : '❌'}</div>
-                        <div style="flex: 1;">
-                            <div class="review-question">Q${index + 1}: ${item.question}</div>
-                            ${answerHTML}
-                        </div>
-                    </div>
-                `;
+            <div class="review-header">
+                <div class="review-icon">${item.isCorrect ? '✅' : '❌'}</div>
+                <div style="flex: 1;">
+                    <div class="review-question">Q${index + 1}: ${item.question}</div>
+                    ${answerHTML}
+                </div>
+            </div>
+        `;
         reviewContainer.appendChild(reviewDiv);
     });
 }

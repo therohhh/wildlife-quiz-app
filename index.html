@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wildlife Ecology Quiz</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 <body>
     <div class="container">
+        <!-- Week Selection Screen -->
         <div id="weekSelection" class="card">
             <div class="header">
                 <div class="icon">🐯🌴📝</div>
@@ -16,15 +16,22 @@
                 <p>Select a week to start practicing</p>
             </div>
 
-            <button class="full-quiz-btn" onclick="startQuiz('all')">
-                <div> Full Quiz</div>
-                <div class="subtitle" id="totalQuestions">Practice all questions</div>
-            </button>
+            <div class="quiz-mode-buttons">
+                <button class="full-quiz-btn" onclick="startQuiz('all')">
+                    <div>📚 Full Quiz</div>
+                    <div class="subtitle" id="totalQuestions">Practice all questions in order</div>
+                </button>
+
+                <button class="random-quiz-btn" onclick="startQuiz('random')">
+                    <div>🎲 Random Quiz</div>
+                    <div class="subtitle">Practice all questions randomly</div>
+                </button>
+            </div>
 
             <div class="week-grid" id="weekGrid"></div>
         </div>
 
-        
+        <!-- Quiz Screen -->
         <div id="quizScreen" class="hidden">
             <div class="card">
                 <div class="question-header">
@@ -56,12 +63,12 @@
             </div>
         </div>
 
-        
+        <!-- Results Screen -->
         <div id="resultsScreen" class="hidden">
             <div class="card result-card">
                 <div class="trophy">🏆</div>
                 <h2>Quiz Complete!</h2>
-                <p style="color: #666; margin-top: 10px;">Here's how you performed</p>
+                <p style="color: #94a3b8; margin-top: 10px;">Here's how you performed</p>
 
                 <div class="score-big">
                     <div class="number"><span id="finalScore">0</span>/<span id="finalTotal">0</span></div>
@@ -77,5 +84,7 @@
             </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
