@@ -345,7 +345,7 @@
       "both participants are benefitted",
       "both participants are unharmed"
     ],
-    "correctAnswer": 2
+    "correctAnswer": 3
   },
   {
     "id": 30,
@@ -489,7 +489,7 @@
       "Physiological longevity < Ecological longevity",
       "a or b"
     ],
-    "correctAnswer": 0
+    "correctAnswer": 3
   },
   {
     "id": 42,
@@ -609,7 +609,7 @@
       "Fundamental niche < Realised niche",
       "a or b"
     ],
-    "correctAnswer": 0
+    "correctAnswer": 3
   },
   {
     "id": 52,
@@ -897,7 +897,7 @@
       "very low",
       "non-existent"
     ],
-    "correctAnswer": 2
+    "correctAnswer": 1
   },
   {
     "id": 76,
@@ -921,7 +921,7 @@
       "cattle",
       "sickle"
     ],
-    "correctAnswer": 1
+    "correctAnswer": 3
   },
   {
     "id": 78,
@@ -1168,8 +1168,7 @@
     "options": [
       "adaptation",
       "mitigation",
-      "deceleration",
-      "maladaptation"
+      "deceleration"
     ],
     "correctAnswer": 0
   },
@@ -1278,7 +1277,7 @@
       "match-mismatch hypothesis",
       "none of these"
     ],
-    "correctAnswer": 1
+    "correctAnswer": 2
   },
   {
     "id": 108,
@@ -1287,8 +1286,7 @@
     "options": [
       "recovery",
       "restoration",
-      "enhancement",
-      "none of these"
+      "enhancement"
     ],
     "correctAnswer": 1
   },
@@ -1314,7 +1312,7 @@
       "R + F = M + G",
       "R + G + M + F = 0"
     ],
-    "correctAnswer": 2
+    "correctAnswer": 0
   },
   {
     "id": 111,
